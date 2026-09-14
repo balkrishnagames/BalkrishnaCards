@@ -1,0 +1,5 @@
+# Balkrishna Cards - app-ads.txt
+# AdMob reads this at https://balkrishnagames.in/app-ads.txt to confirm that this developer
+# (publisher id below) is the one selling ad space in the app. Keep the file at the site root
+# and keep the developer website field in Play Console pointing at the same domain.
+google.com, pub-6411090777007496, DIRECT, f08c47fec0942fa0
