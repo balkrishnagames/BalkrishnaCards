@@ -12,12 +12,8 @@ how-to-play documentation can never drift apart from the app:
     opened straight from the filesystem.
 
 Run:  python3 website/build_site.py
-Then: push the whole website/ folder to the BalkrishnaCards repo's GitHub Pages source -
-      it is served at https://balkrishnagames.github.io/BalkrishnaCards/. Being a GitHub Pages
-      *project* site (not a custom domain), it cannot serve /.well-known/assetlinks.json at the
-      true root of balkrishnagames.github.io, so the /join App Link can never auto-verify here -
-      see the AndroidManifest.xml comment next to that intent-filter. join.html's own redirect to
-      the app is what actually makes invite links work.
+Then: upload the whole website/ folder to balkrishnagames.in (HTTPS required - the app and
+      the /join App Link both assume it).
 """
 
 import json
@@ -28,7 +24,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 APP_L = os.path.join(ROOT, "unity", "Assets", "Scripts", "App", "L.cs")
 
-DOMAIN = "https://balkrishnagames.github.io/BalkrishnaCards"
+DOMAIN = "https://balkrishnagames.in"
 COMPANY = "Balkrishna Enterprise"
 EMAIL = "balkrishnagames@gmail.com"
 APP_NAME = "Balkrishna Cards"
@@ -62,7 +58,7 @@ T = {
         "g1": "Seven games at launch: Teen Patti, Indian Rummy, Bluff, Andar Bahar, 3-2-5, Gulam Chor and Stack Play.",
         "g2": "Practice with bots, pass one phone around the circle, or host a private table your family joins with a code.",
         "g3": "All 25 seats play at the same time — the app deals, holds the pot and scores every hand, so nobody sits out to deal.",
-        "g4": "Nearby tables keep working with no internet at all, on the same Wi-Fi or a hotspot.",
+        "g4": "Nearby tables keep working with no internet at all, on the same Wi-Fi or a hotspot; online tables work across cities.",
         "g5": "Each player picks their own language: English, हिन्दी, ગુજરાતી, मराठी, বাংলা, தமிழ், తెలుగు, ಕನ್ನಡ, മലയാളം, ਪੰਜਾਬੀ, Español or Français.",
         "g6": "Chips are handed out by the group leader inside the app. We never sell chips, and nothing here can be cashed out.",
         "g7": "Free to download. If you want the menus quiet, one small one-time payment removes the ads for good.",
@@ -92,7 +88,7 @@ T = {
         "g1": "शुरुआत में सात खेल: तीन पत्ती, इंडियन रम्मी, ब्लफ़, अंदर बाहर, 3-2-5, गुलाम चोर और स्टैक प्ले।",
         "g2": "बॉट के साथ अभ्यास करें, एक फ़ोन हाथों-हाथ घुमाएँ, या अपना निजी टेबल खोलें जिसमें परिवार कोड से जुड़े।",
         "g3": "सभी 25 सीटें एक ही समय खेलती हैं — पत्ते बाँटना, गड्ढा और हर हाथ का हिसाब ऐप करता है, कोई बाँटने के लिए बैठा नहीं रहता।",
-        "g4": "आसपास का टेबल बिना इंटरनेट भी चलता है — एक ही Wi-Fi या हॉटस्पॉट पर।",
+        "g4": "आसपास का टेबल बिना इंटरनेट भी चलता है — एक ही Wi-Fi या हॉटस्पॉट पर; ऑनलाइन टेबल दूसरे शहरों तक।",
         "g5": "हर खिलाड़ी अपनी भाषा चुनता है: English, हिन्दी, ગુજરાતી, मराठी, বাংলা, தமிழ், తెలుగు, ಕನ್ನಡ, മലയാളം, ਪੰਜਾਬੀ, Español या Français।",
         "g6": "चिप ग्रुप लीडर ऐप के अंदर बाँटता है। हम चिप कभी नहीं बेचते और यहाँ कुछ भी नकद नहीं हो सकता।",
         "g7": "डाउनलोड मुफ़्त। मेन्यू शांत रखने के लिए एक बार का छोटा भुगतान विज्ञापन हमेशा के लिए हटा देता है।",
@@ -121,7 +117,7 @@ T = {
         "g1": "શરૂઆતમાં સાત રમતો: તીન પત્તી, ઇન્ડિયન રમી, બ્લફ, અંદર બહાર, 3-2-5, ગુલામ ચોર અને સ્ટેક પ્લે.",
         "g2": "બોટ સાથે અભ્યાસ કરો, એક ફોન હાથો-હાથ ફેરવો, અથવા પોતાનું ખાનગી ટેબલ ખોલો જેમાં પરિવાર કોડથી જોડાય.",
         "g3": "બધી 25 સીટ એક જ સમયે રમે છે — પત્તાં વહેંચવા, ગલ્લો અને દરેક હાથનો હિસાબ એપ કરે છે, કોઈ વહેંચવા બેસવું નથી.",
-        "g4": "નજીકનું ટેબલ ઇન્ટરનેટ વગર પણ ચાલે છે — એક જ Wi-Fi કે હોટસ્પોટ પર.",
+        "g4": "નજીકનું ટેબલ ઇન્ટરનેટ વગર પણ ચાલે છે — એક જ Wi-Fi કે હોટસ્પોટ પર; ઓનલાઇન ટેબલ શહેરો વચ્ચે.",
         "g5": "દરેક ખેલાડી પોતાની ભાષા પસંદ કરે છે: English, हिन्दी, ગુજરાતી, मराठी, বাংলা, தமிழ், తెలుగు, ಕನ್ನಡ, മലയാളം, ਪੰਜਾਬੀ, Español કે Français.",
         "g6": "ચિપ ગ્રુપ લીડર એપમાં જ આપે છે. અમે ચિપ કદી વેચતા નથી અને અહીં કંઈ પણ રોકડમાં ન થાય.",
         "g7": "ડાઉનલોડ મફત. મેનૂ શાંત રાખવા એક વારનું નાનું પેમેન્ટ જાહેરાત કાયમ માટે હટાવે છે.",
@@ -150,7 +146,7 @@ T = {
         "g1": "सुरुवातीला सात खेळ: तीन पत्ती, इंडियन रमी, ब्लफ, अंदर बाहर, 3-2-5, गुलाम चोर आणि स्टॅक प्ले.",
         "g2": "बॉटसोबत सराव करा, एक फोन हातोहात फिरवा, किंवा कुटुंब कोडने जोडणारे स्वतःचे खाजगी टेबल उघडा.",
         "g3": "सर्व 25 जागा एकाच वेळी खेळतात — पत्ते वाटणे, पात्र आणि प्रत्येक हाताचा हिशेब ॲप करते, वाटण्यासाठी कोणी बसत नाही.",
-        "g4": "जवळचे टेबल इंटरनेटशिवायही चालते — एकाच Wi-Fi किंवा हॉटस्पॉटवर.",
+        "g4": "जवळचे टेबल इंटरनेटशिवायही चालते — एकाच Wi-Fi किंवा हॉटस्पॉटवर; ऑनलाइन टेबल शहरांपलीकडे.",
         "g5": "प्रत्येक खेळाडू स्वतःची भाषा निवडतो: English, हिन्दी, ગુજરાતી, मराठी, বাংলা, தமிழ், తెలుగు, ಕನ್ನಡ, മലയാളം, ਪੰਜਾਬੀ, Español किंवा Français.",
         "g6": "चिप्स ग्रुप लीडर ॲपमध्येच देतो. आम्ही चिप्स कधीही विकत नाही आणि इथे काहीही रोख होत नाही.",
         "g7": "डाउनलोड मोफत. मेनू शांत ठेवण्यासाठी एकदाचे छोटे पेमेंट जाहिरात कायमची हटवते.",
@@ -179,7 +175,7 @@ T = {
         "g1": "Siete juegos desde el primer día: Teen Patti, Rummy indio, Bluff, Andar Bahar, 3-2-5, Gulam Chor y Stack Play.",
         "g2": "Practica con bots, pasa un solo teléfono en círculo, o abre una mesa privada a la que tu familia entra con un código.",
         "g3": "Los 25 asientos juegan a la vez: la app reparte, lleva el bote y anota cada mano, así que nadie se queda fuera repartiendo.",
-        "g4": "Las mesas cercanas funcionan sin internet, en el mismo Wi-Fi o con un punto de acceso.",
+        "g4": "Las mesas cercanas funcionan sin internet, en el mismo Wi-Fi o con un punto de acceso; las mesas online cruzan ciudades.",
         "g5": "Cada jugador elige su idioma: inglés, hindi, guyaratí, maratí, bengalí, tamil, telugu, canarés, malabar, panyabí, español o francés.",
         "g6": "Las fichas las reparte el líder del grupo dentro de la app. Nunca vendemos fichas y aquí nada se puede cobrar.",
         "g7": "Descarga gratuita. Si quieres los menús tranquilos, un único pago pequeño quita los anuncios para siempre.",
@@ -208,7 +204,7 @@ T = {
         "g1": "Sept jeux dès la sortie : Teen Patti, Rami indien, Bluff, Andar Bahar, 3-2-5, Gulam Chor et Stack Play.",
         "g2": "Entraînez-vous contre des bots, faites passer un seul téléphone, ou ouvrez une table privée où votre famille entre avec un code.",
         "g3": "Les 25 places jouent en même temps : l'appli distribue, tient le pot et compte chaque main, personne ne reste assis à distribuer.",
-        "g4": "Les tables proches fonctionnent sans internet, sur le même Wi-Fi ou un partage de connexion.",
+        "g4": "Les tables proches fonctionnent sans internet, sur le même Wi-Fi ou un partage de connexion ; les tables en ligne traversent les villes.",
         "g5": "Chaque joueur choisit sa langue : anglais, hindi, goudjarati, marathi, bengali, tamoul, télougou, kannada, malayalam, pendjabi, espagnol ou français.",
         "g6": "Les jetons sont distribués par le chef de groupe dans l'appli. Nous ne vendons jamais de jetons et rien ici ne peut être encaissé.",
         "g7": "Téléchargement gratuit. Pour des menus au calme, un seul petit paiement retire les publicités définitivement.",
@@ -237,7 +233,7 @@ T = {
         "g1": "শুরুতেই সাতটি খেলা: তিন পত্তি, ইন্ডিয়ান রামি, ব্লাফ, আন্দর বাহার, ৩-২-৫, গোলাম চোর ও স্ট্যাক প্লে।",
         "g2": "বটের সঙ্গে অভ্যাস করুন, একটি ফোন হাতে হাতে ঘোরান, বা কোড দিয়ে পরিবার যোগ দেবে এমন ব্যক্তিগত টেবিল খুলুন।",
         "g3": "২৫টি আসনই একসঙ্গে খেলে — কার্ড বিলি, পট ও প্রতিটি হাতের হিসাব অ্যাপই করে, বিলি করতে কাউকে বসে থাকতে হয় না।",
-        "g4": "কাছের টেবিল ইন্টারনেট ছাড়াও চলে — একই Wi-Fi বা হটস্পটে।",
+        "g4": "কাছের টেবিল ইন্টারনেট ছাড়াও চলে — একই Wi-Fi বা হটস্পটে; অনলাইন টেবিল শহরের পর শহরে।",
         "g5": "প্রত্যেকে নিজের ভাষা বেছে নেয়: English, हिन्दी, ગુજરાતી, मराठी, বাংলা, தமிழ், తెలుగు, ಕನ್ನಡ, മലയാളം, ਪੰਜਾਬੀ, Español বা Français।",
         "g6": "চিপ গ্রুপ লিডার অ্যাপের ভিতরেই দেন। আমরা চিপ বিক্রি করি না, আর এখানে কিছুই নগদ করা যায় না।",
         "g7": "ডাউনলোড বিনামূল্যে। মেনু শান্ত রাখতে একবারের ছোট পেমেন্ট বিজ্ঞাপন চিরকালের জন্য সরায়।",
@@ -266,7 +262,7 @@ T = {
         "g1": "தொடக்கத்தில் ஏழு விளையாட்டுகள்: டீன் பட்டி, இந்தியன் ரம்மி, ப்ளஃப், அந்தர் பஹர், 3-2-5, குலாம் சோர், ஸ்டாக் ப்ளே.",
         "g2": "பாட்களுடன் பயிற்சி செய்யுங்கள், ஒரு போனை கைக்கு கை சுற்றுங்கள், அல்லது குறியீட்டால் குடும்பம் சேரும் தனிப்பட்ட மேசையைத் தொடங்குங்கள்.",
         "g3": "25 இடங்களும் ஒரே நேரத்தில் விளையாடுகின்றன — சீட்டு விநியோகம், தொகை, ஒவ்வொரு சுற்றின் கணக்கு எல்லாம் ஆப் செய்கிறது; விநியோகிக்க யாரும் உட்கார வேண்டாம்.",
-        "g4": "அருகிலுள்ள மேசை இணையம் இல்லாமலும் இயங்கும் — ஒரே Wi-Fi அல்லது ஹாட்ஸ்பாட்டில்.",
+        "g4": "அருகிலுள்ள மேசை இணையம் இல்லாமலும் இயங்கும் — ஒரே Wi-Fi அல்லது ஹாட்ஸ்பாட்டில்; ஆன்லைன் மேசை வேறு நகரங்களிலும்.",
         "g5": "ஒவ்வொருவரும் அவரவர் மொழியைத் தேர்ந்தெடுக்கலாம்: English, हिन्दी, ગુજરાતી, मराठी, বাংলা, தமிழ், తెలుగు, ಕನ್ನಡ, മലയാളം, ਪੰਜਾਬੀ, Español அல்லது Français.",
         "g6": "சில்லுகளை குழுத் தலைவரே ஆப்பில் வழங்குகிறார். நாங்கள் சில்லுகளை விற்கமாட்டோம்; இங்கே எதையும் பணமாக்க முடியாது.",
         "g7": "பதிவிறக்கம் இலவசம். மெனுக்கள் அமைதியாக இருக்க ஒரே முறை சிறு கட்டணம் விளம்பரங்களை நிரந்தரமாக நீக்கும்.",
@@ -295,7 +291,7 @@ T = {
         "g1": "మొదటి విడుదలలో ఏడు ఆటలు: టీన్ పట్టి, ఇండియన్ రమ్మీ, బ్లఫ్, అందర్ బహర్, 3-2-5, గులాం చోర్, స్టాక్ ప్లే.",
         "g2": "బాట్‌లతో సాధన చేయండి, ఒక ఫోన్‌ను చేతి నుంచి చేతికి అందించండి, లేదా కోడ్‌తో కుటుంబం చేరే మీ సొంత ప్రైవేట్ టేబుల్ తెరవండి.",
         "g3": "25 సీట్లు అన్నీ ఒకేసారి ఆడతాయి — పంపిణీ, పాట్, ప్రతి చేతి లెక్క యాప్ చేస్తుంది; పంపిణీకి ఎవరూ కూర్చోవాల్సిన అవసరం లేదు.",
-        "g4": "దగ్గరి టేబుల్ ఇంటర్నెట్ లేకుండా కూడా నడుస్తుంది — ఒకే Wi-Fi లేదా హాట్‌స్పాట్‌లో.",
+        "g4": "దగ్గరి టేబుల్ ఇంటర్నెట్ లేకుండా కూడా నడుస్తుంది — ఒకే Wi-Fi లేదా హాట్‌స్పాట్‌లో; ఆన్‌లైన్ టేబుల్ వేరే నగరాల్లోనూ.",
         "g5": "ప్రతి ఒక్కరూ తమ భాషను ఎంచుకుంటారు: English, हिन्दी, ગુજરાતી, मराठी, বাংলা, தமிழ், తెలుగు, ಕನ್ನಡ, മലയാളം, ਪੰਜਾਬੀ, Español లేదా Français.",
         "g6": "చిప్‌లను గ్రూప్ లీడర్ యాప్‌లోనే ఇస్తారు. మేము చిప్‌లు అమ్మము, ఇక్కడ ఏదీ నగదుగా మారదు.",
         "g7": "డౌన్‌లోడ్ ఉచితం. మెనూలు ప్రశాంతంగా ఉండాలంటే ఒకసారి చిన్న చెల్లింపు ప్రకటనలను శాశ్వతంగా తొలగిస్తుంది.",
@@ -324,7 +320,7 @@ T = {
         "g1": "ಮೊದಲ ಬಿಡುಗಡೆಯಲ್ಲಿ ಏಳು ಆಟಗಳು: ಟೀನ್ ಪಟ್ಟಿ, ಇಂಡಿಯನ್ ರಮ್ಮಿ, ಬ್ಲಫ್, ಅಂದರ್ ಬಹರ್, 3-2-5, ಗುಲಾಂ ಚೋರ್, ಸ್ಟಾಕ್ ಪ್ಲೇ.",
         "g2": "ಬಾಟ್‌ಗಳೊಂದಿಗೆ ಅಭ್ಯಾಸ ಮಾಡಿ, ಒಂದು ಫೋನ್ ಕೈಯಿಂದ ಕೈಗೆ ಹಾಕಿ, ಅಥವಾ ಕೋಡ್‌ನಿಂದ ಕುಟುಂಬ ಸೇರುವ ನಿಮ್ಮದೇ ಖಾಸಗಿ ಮೇಜು ತೆರೆಯಿರಿ.",
         "g3": "ಎಲ್ಲ 25 ಆಸನಗಳೂ ಒಟ್ಟಿಗೇ ಆಡುತ್ತವೆ — ಹಂಚಿಕೆ, ಪಾಟ್, ಪ್ರತಿ ಸುತ್ತಿನ ಲೆಕ್ಕವನ್ನು ಆ್ಯಪ್ ಮಾಡುತ್ತದೆ; ಹಂಚಲು ಯಾರೂ ಕೂರಬೇಕಿಲ್ಲ.",
-        "g4": "ಹತ್ತಿರದ ಮೇಜು ಇಂಟರ್ನೆಟ್ ಇಲ್ಲದೆಯೂ ನಡೆಯುತ್ತದೆ — ಒಂದೇ Wi-Fi ಅಥವಾ ಹಾಟ್‌ಸ್ಪಾಟ್‌ನಲ್ಲಿ.",
+        "g4": "ಹತ್ತಿರದ ಮೇಜು ಇಂಟರ್ನೆಟ್ ಇಲ್ಲದೆಯೂ ನಡೆಯುತ್ತದೆ — ಒಂದೇ Wi-Fi ಅಥವಾ ಹಾಟ್‌ಸ್ಪಾಟ್‌ನಲ್ಲಿ; ಆನ್‌ಲೈನ್ ಮೇಜು ಬೇರೆ ನಗರಗಳಲ್ಲೂ.",
         "g5": "ಪ್ರತಿಯೊಬ್ಬರೂ ತಮ್ಮ ಭಾಷೆ ಆಯ್ಕೆಮಾಡುತ್ತಾರೆ: English, हिन्दी, ગુજરાતી, मराठी, বাংলা, தமிழ், తెలుగు, ಕನ್ನಡ, മലയാളം, ਪੰਜਾਬੀ, Español ಅಥವಾ Français.",
         "g6": "ಚಿಪ್‌ಗಳನ್ನು ಗುಂಪು ನಾಯಕರೇ ಆ್ಯಪ್‌ನಲ್ಲಿ ಕೊಡುತ್ತಾರೆ. ನಾವು ಚಿಪ್ ಮಾರುವುದಿಲ್ಲ, ಇಲ್ಲಿ ಯಾವುದೂ ನಗದಾಗುವುದಿಲ್ಲ.",
         "g7": "ಡೌನ್‌ಲೋಡ್ ಉಚಿತ. ಮೆನುಗಳು ಶಾಂತವಾಗಿರಲು ಒಮ್ಮೆಯ ಸಣ್ಣ ಪಾವತಿ ಜಾಹೀರಾತನ್ನು ಶಾಶ್ವತವಾಗಿ ತೆಗೆದುಹಾಕುತ್ತದೆ.",
@@ -353,7 +349,7 @@ T = {
         "g1": "ആദ്യ റിലീസിൽ ഏഴ് കളികൾ: ടീൻ പട്ടി, ഇന്ത്യൻ റമ്മി, ബ്ലഫ്, അന്തർ ബഹർ, 3-2-5, ഗുലാം ചോർ, സ്റ്റാക്ക് പ്ലേ.",
         "g2": "ബോട്ടുകളോടൊപ്പം പരിശീലിക്കുക, ഒരു ഫോൺ കൈയിൽ നിന്ന് കൈയിലേക്ക് കൈമാറുക, അല്ലെങ്കിൽ കോഡിലൂടെ കുടുംബം ചേരുന്ന സ്വന്തം സ്വകാര്യ ടേബിൾ തുറക്കുക.",
         "g3": "25 സീറ്റുകളും ഒരേ സമയം കളിക്കുന്നു — വിതരണം, പാട്ട്, ഓരോ കൈയുടെ കണക്ക് എന്നിവ ആപ്പ് ചെയ്യുന്നു; വിതരണത്തിന് ആരും ഇരിക്കേണ്ട.",
-        "g4": "അടുത്തുള്ള ടേബിൾ ഇന്റർനെറ്റ് ഇല്ലാതെയും പ്രവർത്തിക്കും — ഒരേ Wi-Fi അല്ലെങ്കിൽ ഹോട്ട്സ്പോട്ടിൽ.",
+        "g4": "അടുത്തുള്ള ടേബിൾ ഇന്റർനെറ്റ് ഇല്ലാതെയും പ്രവർത്തിക്കും — ഒരേ Wi-Fi അല്ലെങ്കിൽ ഹോട്ട്സ്പോട്ടിൽ; ഓൺലൈൻ ടേബിൾ വേറെ നഗരങ്ങളിലും.",
         "g5": "ഓരോരുത്തരും സ്വന്തം ഭാഷ തിരഞ്ഞെടുക്കുന്നു: English, हिन्दी, ગુજરાતી, मराठी, বাংলা, தமிழ், తెలుగు, ಕನ್ನಡ, മലയാളം, ਪੰਜਾਬੀ, Español അല്ലെങ്കിൽ Français.",
         "g6": "ചിപ്പുകൾ ഗ്രൂപ്പ് ലീഡർ ആപ്പിൽ തന്നെ നൽകുന്നു. ഞങ്ങൾ ചിപ്പ് വിൽക്കുന്നില്ല; ഇവിടെ ഒന്നും പണമാക്കാനാവില്ല.",
         "g7": "ഡൗൺലോഡ് സൗജന്യം. മെനുകൾ ശാന്തമായിരിക്കാൻ ഒരു തവണയുള്ള ചെറിയ പേയ്മെന്റ് പരസ്യങ്ങൾ ശാശ്വതമായി നീക്കും.",
@@ -382,7 +378,7 @@ T = {
         "g1": "ਪਹਿਲੀ ਰਿਲੀਜ਼ ਵਿੱਚ ਸੱਤ ਖੇਡਾਂ: ਤੀਨ ਪੱਤੀ, ਇੰਡੀਅਨ ਰੰਮੀ, ਬਲਫ, ਅੰਦਰ ਬਾਹਰ, 3-2-5, ਗੁਲਾਮ ਚੋਰ ਅਤੇ ਸਟੈਕ ਪਲੇ।",
         "g2": "ਬੋਟਾਂ ਨਾਲ ਅਭਿਆਸ ਕਰੋ, ਇੱਕ ਫੋਨ ਹੱਥੋ-ਹੱਥ ਘੁਮਾਓ, ਜਾਂ ਕੋਡ ਨਾਲ ਪਰਿਵਾਰ ਜੁੜੇ ਅਜਿਹਾ ਆਪਣਾ ਨਿੱਜੀ ਟੇਬਲ ਖੋਲ੍ਹੋ।",
         "g3": "ਸਾਰੀਆਂ 25 ਸੀਟਾਂ ਇੱਕੋ ਸਮੇਂ ਖੇਡਦੀਆਂ ਹਨ — ਪੱਤੇ ਵੰਡਣੇ, ਗੱਲ੍ਹਾ ਅਤੇ ਹਰ ਹੱਥ ਦਾ ਹਿਸਾਬ ਐਪ ਕਰਦੀ ਹੈ, ਵੰਡਣ ਲਈ ਕੋਈ ਬੈਠਦਾ ਨਹੀਂ।",
-        "g4": "ਨੇੜਲਾ ਟੇਬਲ ਬਿਨਾਂ ਇੰਟਰਨੈੱਟ ਵੀ ਚੱਲਦਾ ਹੈ — ਇੱਕੋ Wi-Fi ਜਾਂ ਹਾਟਸਪਾਟ ’ਤੇ।",
+        "g4": "ਨੇੜਲਾ ਟੇਬਲ ਬਿਨਾਂ ਇੰਟਰਨੈੱਟ ਵੀ ਚੱਲਦਾ ਹੈ — ਇੱਕੋ Wi-Fi ਜਾਂ ਹਾਟਸਪਾਟ ’ਤੇ; ਆਨਲਾਈਨ ਟੇਬਲ ਹੋਰ ਸ਼ਹਿਰਾਂ ਵਿੱਚ ਵੀ।",
         "g5": "ਹਰ ਖਿਡਾਰੀ ਆਪਣੀ ਭਾਸ਼ਾ ਚੁਣਦਾ ਹੈ: English, हिन्दी, ગુજરાતી, मराठी, বাংলা, தமிழ், తెలుగు, ಕನ್ನಡ, മലയാളം, ਪੰਜਾਬੀ, Español ਜਾਂ Français।",
         "g6": "ਚਿੱਪਾਂ ਗਰੁੱਪ ਲੀਡਰ ਐਪ ਵਿੱਚ ਹੀ ਦਿੰਦਾ ਹੈ। ਅਸੀਂ ਚਿੱਪਾਂ ਕਦੇ ਨਹੀਂ ਵੇਚਦੇ ਅਤੇ ਇੱਥੇ ਕੁਝ ਵੀ ਨਕਦ ਨਹੀਂ ਹੁੰਦਾ।",
         "g7": "ਡਾਊਨਲੋਡ ਮੁਫ਼ਤ। ਮੀਨੂੰ ਸ਼ਾਂਤ ਰੱਖਣ ਲਈ ਇੱਕ ਵਾਰ ਦਾ ਛੋਟਾ ਭੁਗਤਾਨ ਇਸ਼ਤਿਹਾਰ ਹਮੇਸ਼ਾ ਲਈ ਹਟਾ ਦਿੰਦਾ ਹੈ।",
@@ -446,14 +442,10 @@ JS_CHROME = """
 (function () {
   var T = %s;
   var KEY = 'bk_lang';
-  // Storage is not always there: a private window can refuse it, and this site is happy to be
-  // opened from a file or inside a frame. A refused read must never stop the page from drawing.
-  function getKey(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
-  function setKey(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
   function pick() {
     var q = new URLSearchParams(location.search).get('lang');
     if (q && T[q]) return q;
-    var saved = getKey(KEY);
+    var saved = localStorage.getItem(KEY);
     if (saved && T[saved]) return saved;
     var nav = (navigator.language || 'en').slice(0, 2);
     return T[nav] ? nav : 'en';
@@ -468,7 +460,7 @@ JS_CHROME = """
     document.querySelectorAll('.langpick').forEach(function (el) {
       el.className = 'pill langpick' + (el.getAttribute('data-lang') === code ? ' on' : '');
     });
-    setKey(KEY, code);
+    localStorage.setItem(KEY, code);
   }
   window.bkSetLang = function (code) { apply(code); if (window.onLangChange) window.onLangChange(code); };
   document.addEventListener('DOMContentLoaded', function () {
@@ -545,7 +537,7 @@ def read_rules():
     src = open(APP_L, encoding="utf-8").read()
     block = re.search(r"private static Dictionary<string, string\[\]> BuildRules\(\).*?return d;\s*\}", src, re.S).group(0)
     data = {}
-    for m in re.finditer(r'add\("rules\.([a-z_.]+)",\s*new string\[\]\s*\{(.*?)\}\);', block, re.S):
+    for m in re.finditer(r'add\("rules\.([a-z_]+)",\s*new string\[\]\s*\{(.*?)\}\);', block, re.S):
         gid, body = m.group(1), m.group(2)
         items, cur, inq, esc = [], "", False, False
         for ch in body:
@@ -571,17 +563,6 @@ def read_rules():
 
 def build():
     rules = read_rules()
-
-    # The Teen Patti bonus is a rule, not a game: the app prints it as its own line inside the
-    # Teen Patti rules (App/L.cs, RulesFor), so the website has to fold it into the same game
-    # rather than open a tab called "tp.bonus". Without this the how-to-play page would quietly
-    # leave out the rule the leader switches on for the table.
-    bonus = rules.pop("tp.bonus", None)
-    if bonus and "teen_patti" in rules:
-        for code in LANGS:
-            line = (bonus.get(code) or [""])[0]
-            if line:
-                rules["teen_patti"][code] = rules["teen_patti"][code] + [line]
     written = []
 
     # ---------------- index ----------------
@@ -596,7 +577,7 @@ def build():
 <li data-i18n="g1">Seven games at launch: Teen Patti, Indian Rummy, Bluff, Andar Bahar, 3-2-5, Gulam Chor and Stack Play.</li>
 <li data-i18n="g2">Practice with bots, pass one phone around the circle, or host a private table your family joins with a code.</li>
 <li data-i18n="g3">All 25 seats play at the same time — the app deals, holds the pot and scores every hand, so nobody sits out to deal.</li>
-<li data-i18n="g4">Nearby tables keep working with no internet at all, on the same Wi-Fi or a hotspot.</li>
+<li data-i18n="g4">Nearby tables keep working with no internet at all, on the same Wi-Fi or a hotspot; online tables work across cities.</li>
 <li data-i18n="g5">Each player picks their own language: English, हिन्दी, ગુજરાતી, मराठी, বাংলা, தமிழ், తెలుగు, ಕನ್ನಡ, മലയാളം, ਪੰਜਾਬੀ, Español or Français.</li>
 <li data-i18n="g6">Chips are handed out by the group leader inside the app. We never sell chips, and nothing here can be cashed out.</li>
 <li data-i18n="g7">Free to download. If you want the menus quiet, one small one-time payment removes the ads for good.</li>
@@ -625,8 +606,7 @@ def build():
     body = f"""
 <h1>How to play</h1>
 <p class="tag">Every game, fully documented — in twelve languages. These are the same rules the app
-shows in its help screen, including the house rules the group leader switches on (the Teen Patti
-bonus sits at the end of the Teen Patti list), so a table can never argue about what was agreed.</p>
+shows in its help screen, so a table can never argue about a house rule.</p>
 {lang_bar()}
 <div id="gameSwitch" class="card"></div>
 <div id="ruleBox" class="card rules"></div>
@@ -660,7 +640,7 @@ var BK_RULES = {rules_json};
   }}
   window.onLangChange = function (code) {{ current = code; render(); }};
   document.addEventListener('DOMContentLoaded', function () {{
-    try {{ current = localStorage.getItem('bk_lang') || 'en'; }} catch (e) {{ current = 'en'; }}
+    current = localStorage.getItem('bk_lang') || 'en';
     render();
   }});
 }})();
@@ -944,17 +924,7 @@ state to keep.</li>
 <p>The group leader: tap <strong>Host a table</strong> on the home screen, then share the room code
 with the family — the invite button opens WhatsApp with a message and a link already written. When
 everyone is in the lobby, the leader taps <strong>Deal the cards</strong>. Nearby tables work with
-no internet at all (same Wi-Fi or one phone's hotspot). Online play across cities is on the
-roadmap, not in this release yet.</p>
-
-<h2>Who decides the house rules?</h2>
-<p>The group leader, under <strong>Settings</strong>: the boot everyone puts in, how many decks the
-table deals, the match length, and — in Teen Patti — the <strong>bonus</strong>. The bonus is a side
-payment: the leader ticks which winning hands pay it (trail, pure sequence, sequence, colour) and
-whether every other player pays one boot, two boots or a fixed number of chips. It is paid only when
-the winning hand is shown, so a hand everyone packs pays nothing. The whole table plays what the
-leader set, and the rule is printed on the game's rules page in each player's own language — see
-<a href="rules.html">how to play</a>.</p>
+no internet (same Wi-Fi or one phone's hotspot); online tables work across cities.</p>
 
 <h2>Joining a table</h2>
 <p>Tap <strong>Join with a code</strong>, type the six characters the leader sent you, and take your
@@ -976,10 +946,10 @@ message at the bottom of the screen.</p>
 <p>Pass-and-play shows one hand at a time: the phone should be passed after each turn. If a hand
 looks wrong, the phone may have been handed over before the previous player finished their turn.</p>
 
-<h2>Is online play available?</h2>
-<p>Not yet. This release ships with Practice, Pass and play, and Nearby (same Wi-Fi or one phone's
-hotspot) - no internet connection needed for any of them. Online play across cities is on the
-roadmap for a future update.</p>
+<h2>Online play feels slow</h2>
+<p>The table waits for every phone before showing the next move, so one person on a weak connection
+paces everyone. Moves are tiny and the app reconnects by itself. If the leader's phone leaves the
+table, the room closes.</p>
 
 <h2>Notifications</h2>
 <p>The app can remind you that a table is waiting — at most once every three hours, and never between
@@ -1001,7 +971,7 @@ travels. <strong>Remove my photo</strong> takes it back to a face.</p>
 
 <h2>Ads</h2>
 <p>The free version shows ads on the menus, never while a hand is being played. Ads are the only
-thing that keeps the app free.</p>
+thing funding the relay server that online tables use.</p>
 
 <h2>Rules in your language</h2>
 <p>Every game is documented on our <a href="rules.html">how to play</a> page in twelve languages,
@@ -1070,7 +1040,8 @@ into the room.</p>
 
     write("README.md", f"""# {APP_NAME} website
 
-This folder is served as GitHub Pages from the BalkrishnaCards repo, at **{DOMAIN}**.
+Deploy this folder to **{DOMAIN}** (HTTPS is required — the app's relay URL and the WhatsApp
+invite App Link both assume it).
 
 ## Pages
 
@@ -1091,42 +1062,40 @@ Regenerate everything (rules are pulled from the app so the two can never disagr
 python3 website/build_site.py
 ```
 
-The rule text on `rules.html` is read straight out of `unity/Assets/Scripts/App/L.cs`
-(`BuildRules()`), one tab per game. Two things to know before touching that reader:
-
-* the reader accepts dotted keys, and `rules.tp.bonus` is **folded into Teen Patti** rather than
-  opened as a tab of its own — the app appends it the same way in `L.RulesFor()`, and the bonus
-  sits in its own key only because it is a rule the leader can switch on or off;
-* a new rule line belongs in the app first. Add it to the game's own block in `L.cs` and it appears
-  on the site, in the app's help screen and on the rules page of a real table in one move.
-
-After a rebuild, `python3 tools/audit/audit_site.py` checks all seven pages: every language present,
-no empty strings, and every block of inline JavaScript actually parses.
-
 ## Hosting
 
-GitHub Pages here — but as a *project* site (`{DOMAIN}`, not a custom domain or a
-`balkrishnagames.github.io` root repo), it is static-only. Two consequences:
+Any static host works (GitHub Pages, Netlify, Cloudflare Pages, or nginx on your own VPS).
+Two things must be true:
 
-1. **The relay cannot live here.** GitHub Pages cannot run `node server/server.js`. The relay
-   needs its own host (a small VPS, Render, Railway, Fly.io, etc.) with its own HTTPS URL, and the
-   app's default server URL (`Assets/Scripts/App/Save.cs`, `Assets/Scripts/Net/RelayTransport.cs`)
-   must point at wherever that ends up.
-2. **App Links can never auto-verify.** Android requires `/.well-known/assetlinks.json` at the
-   true root of the intent-filter's host. A GitHub Pages project site can only serve files under
-   `/BalkrishnaCards/`, never at the bare root of `balkrishnagames.github.io` — only a repo
-   literally named `balkrishnagames.github.io` (or a custom domain with a `CNAME` file) could do
-   that. The manifest's `/join` intent-filter is left with `autoVerify="false"` for this reason.
+1. **HTTPS**, with a valid certificate.
+2. The relay runs on the same domain under `/relay`, because the app's default server URL is
+   `{DOMAIN}/relay`. With nginx:
+
+```nginx
+location /relay/ {{
+    proxy_pass http://127.0.0.1:8787/;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_read_timeout 40s;      # the relay long-polls for up to 25s
+}}
+location /.well-known/ {{ root /var/www/balkrishnagames; }}
+location / {{ root /var/www/balkrishnagames; try_files $uri $uri/ =404; }}
+```
+
+Start the relay with `node server/server.js` (see `docs/20_BUILD_AND_RUN.md`).
 
 ## App Links (so an invite opens the app)
 
-Auto-verified App Links are not possible on the current GitHub Pages project site (see above), so
-the invite flow relies entirely on `join.html`'s own redirect: tapping
-`{DOMAIN}/join?room=CODE` opens this page in a browser, which immediately tries
-`balkrishnacards://join?room=CODE` (an intent-filter that needs no verification) and falls back to
-the Play Store button if the app is not installed. If a custom domain is ever added, revisit
-`android:autoVerify` on the HTTPS intent-filter in `AndroidManifest.xml` and put the real Play App
-Signing SHA-256 fingerprint into `.well-known/assetlinks.json`.
+1. Put your Play App Signing SHA-256 fingerprint into `.well-known/assetlinks.json`
+   (Play Console → Release → Setup → App signing).
+2. Add the intent filter to the Android manifest
+   (see `docs/20_BUILD_AND_RUN.md`, section "WhatsApp invites").
+3. Verify with `https://{DOMAIN}/.well-known/assetlinks.json` and Google's
+   [Statement List Generator](https://developers.google.com/digital-asset-links/tools/generator).
+
+Until App Links are verified, the invite link still works: it opens `join.html`, which shows the
+room code and offers the Play Store listing.
 """)
     written.append("README.md")
 
