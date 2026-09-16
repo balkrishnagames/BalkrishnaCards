@@ -921,15 +921,26 @@ state to keep.</li>
 {lang_bar()}
 
 <h2>Starting a table</h2>
-<p>The group leader: tap <strong>Host a table</strong> on the home screen, then share the room code
-with the family — the invite button opens WhatsApp with a message and a link already written. When
-everyone is in the lobby, the leader taps <strong>Deal the cards</strong>. Nearby tables work with
-no internet (same Wi-Fi or one phone's hotspot); online tables work across cities.</p>
+<p>The group leader: tap <strong>Host a table</strong> on the home screen and pick one of two ways
+to play.</p>
+<ul>
+<li><strong>Nearby</strong> — for everyone in the same room, on the same Wi-Fi or one phone's
+hotspot. No internet connection is needed and there is no code to share: phones on that network find
+the table by themselves once a friend taps <strong>Join a nearby table</strong>.</li>
+<li><strong>Online</strong> — for family in different cities. The leader gets a six-character room
+code and shares it (the invite button opens WhatsApp with a message and a link already written); an
+internet connection is needed on every phone.</li>
+</ul>
+<p>When everyone is in the lobby, the leader taps <strong>Deal the cards</strong>.</p>
 
 <h2>Joining a table</h2>
-<p>Tap <strong>Join with a code</strong>, type the six characters the leader sent you, and take your
-seat. Codes exclude characters like 0 and O that get misread when read aloud. If a code is refused,
-the room has probably expired — rooms close six hours after the last activity.</p>
+<p>Tap <strong>Join with a code</strong>. If the leader started a nearby table, tap <strong>Join a
+nearby table</strong> and your phone finds it on its own — no code, no internet, just the same
+Wi-Fi or hotspot. If the leader started an online table, type the six characters they sent you and
+take your seat. Codes exclude characters like 0 and O that get misread when read aloud. If a code is
+refused, the room has probably expired — rooms close six hours after the last activity. If a nearby
+table is not found, move closer to the host's phone or make sure both phones are on the same Wi-Fi
+or hotspot.</p>
 
 <h2>Where do chips come from?</h2>
 <p>From the group leader. Chips in Balkrishna Cards are virtual, are never sold, and can never be
