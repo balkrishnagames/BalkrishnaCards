@@ -1,6 +1,7 @@
 # Balkrishna Cards website
 
-This folder is served as GitHub Pages from the BalkrishnaCards repo, at **https://balkrishnagames.github.io/BalkrishnaCards**.
+Deploy this folder to **https://balkrishnagames.in** (HTTPS is required — the app's relay URL and the WhatsApp
+invite App Link both assume it).
 
 ## Pages
 
@@ -12,7 +13,7 @@ This folder is served as GitHub Pages from the BalkrishnaCards repo, at **https:
 | `privacy.html` | Privacy Policy (required by Play) |
 | `delete-account.html` | Data deletion instructions (required by Play for apps with accounts/server data) |
 | `support.html` | FAQ and contact |
-| `join.html` | Target of the WhatsApp invite link: `https://balkrishnagames.github.io/BalkrishnaCards/join?room=CODE` |
+| `join.html` | Target of the WhatsApp invite link: `https://balkrishnagames.in/join?room=CODE` |
 | `.well-known/assetlinks.json` | Digital Asset Links — needed for the `/join` App Link |
 
 Regenerate everything (rules are pulled from the app so the two can never disagree):
@@ -21,39 +22,37 @@ Regenerate everything (rules are pulled from the app so the two can never disagr
 python3 website/build_site.py
 ```
 
-The rule text on `rules.html` is read straight out of `unity/Assets/Scripts/App/L.cs`
-(`BuildRules()`), one tab per game. Two things to know before touching that reader:
-
-* the reader accepts dotted keys, and `rules.tp.bonus` is **folded into Teen Patti** rather than
-  opened as a tab of its own — the app appends it the same way in `L.RulesFor()`, and the bonus
-  sits in its own key only because it is a rule the leader can switch on or off;
-* a new rule line belongs in the app first. Add it to the game's own block in `L.cs` and it appears
-  on the site, in the app's help screen and on the rules page of a real table in one move.
-
-After a rebuild, `python3 tools/audit/audit_site.py` checks all seven pages: every language present,
-no empty strings, and every block of inline JavaScript actually parses.
-
 ## Hosting
 
-GitHub Pages here — but as a *project* site (`https://balkrishnagames.github.io/BalkrishnaCards`, not a custom domain or a
-`balkrishnagames.github.io` root repo), it is static-only. Two consequences:
+Any static host works (GitHub Pages, Netlify, Cloudflare Pages, or nginx on your own VPS).
+Two things must be true:
 
-1. **The relay cannot live here.** GitHub Pages cannot run `node server/server.js`. The relay
-   needs its own host (a small VPS, Render, Railway, Fly.io, etc.) with its own HTTPS URL, and the
-   app's default server URL (`Assets/Scripts/App/Save.cs`, `Assets/Scripts/Net/RelayTransport.cs`)
-   must point at wherever that ends up.
-2. **App Links can never auto-verify.** Android requires `/.well-known/assetlinks.json` at the
-   true root of the intent-filter's host. A GitHub Pages project site can only serve files under
-   `/BalkrishnaCards/`, never at the bare root of `balkrishnagames.github.io` — only a repo
-   literally named `balkrishnagames.github.io` (or a custom domain with a `CNAME` file) could do
-   that. The manifest's `/join` intent-filter is left with `autoVerify="false"` for this reason.
+1. **HTTPS**, with a valid certificate.
+2. The relay runs on the same domain under `/relay`, because the app's default server URL is
+   `https://balkrishnagames.in/relay`. With nginx:
+
+```nginx
+location /relay/ {
+    proxy_pass http://127.0.0.1:8787/;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_read_timeout 40s;      # the relay long-polls for up to 25s
+}
+location /.well-known/ { root /var/www/balkrishnagames; }
+location / { root /var/www/balkrishnagames; try_files $uri $uri/ =404; }
+```
+
+Start the relay with `node server/server.js` (see `docs/20_BUILD_AND_RUN.md`).
 
 ## App Links (so an invite opens the app)
 
-Auto-verified App Links are not possible on the current GitHub Pages project site (see above), so
-the invite flow relies entirely on `join.html`'s own redirect: tapping
-`https://balkrishnagames.github.io/BalkrishnaCards/join?room=CODE` opens this page in a browser, which immediately tries
-`balkrishnacards://join?room=CODE` (an intent-filter that needs no verification) and falls back to
-the Play Store button if the app is not installed. If a custom domain is ever added, revisit
-`android:autoVerify` on the HTTPS intent-filter in `AndroidManifest.xml` and put the real Play App
-Signing SHA-256 fingerprint into `.well-known/assetlinks.json`.
+1. Put your Play App Signing SHA-256 fingerprint into `.well-known/assetlinks.json`
+   (Play Console → Release → Setup → App signing).
+2. Add the intent filter to the Android manifest
+   (see `docs/20_BUILD_AND_RUN.md`, section "WhatsApp invites").
+3. Verify with `https://https://balkrishnagames.in/.well-known/assetlinks.json` and Google's
+   [Statement List Generator](https://developers.google.com/digital-asset-links/tools/generator).
+
+Until App Links are verified, the invite link still works: it opens `join.html`, which shows the
+room code and offers the Play Store listing.
