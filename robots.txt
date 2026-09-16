@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://balkrishnagames.github.io/BalkrishnaCards/sitemap.xml

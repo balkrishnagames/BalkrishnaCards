@@ -1,0 +1,7 @@
+# Balkrishna Cards - app-ads.txt
+# AdMob's crawler expects this at the TRUE ROOT of the developer website domain declared in Play
+# Console, e.g. https://balkrishnagames.github.io/app-ads.txt - not a subpath. This repo's GitHub
+# Pages *project* site can only serve it at .../BalkrishnaCards/app-ads.txt, which the crawler will
+# likely miss (same limitation as assetlinks.json - see AndroidManifest.xml). If AdMob later flags
+# "no app-ads.txt found", either add a custom domain or leave the Play Console website field blank.
+google.com, pub-6411090777007496, DIRECT, f08c47fec0942fa0
