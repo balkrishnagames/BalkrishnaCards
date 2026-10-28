@@ -749,13 +749,13 @@ app after a change means you accept the new terms.</p>
     # ---------------- privacy ----------------
     privacy = f"""
 <h1>Privacy Policy</h1>
-<p class="tag">Effective {year()}-09-14 · {COMPANY}</p>
+<p class="tag">Effective {year()}-10-28 · {COMPANY}</p>
 {lang_bar()}
 <div class="card">
 <p><strong>In short:</strong> there is no account and no login. The app stores your name, language
 and preferences on your own phone. When you play online, your display name, your avatar and your
-moves travel through our relay so the other players can see them. Ads and crash reporting are
-handled by Google. We do not sell your data; we do not collect your phone number, contacts or
+moves travel through our relay so the other players can see them. Ads are served by Google AdMob
+and the ad networks it works with (section 4); crash reporting is handled by Google. We do not sell your data; we do not collect your phone number, contacts or
 location; and we never read your photo library — the picture you may choose as an avatar is
 optional, is opened through Android's own file chooser, and is shown only to the people at your
 table.</p>
@@ -770,6 +770,8 @@ table.</p>
 <tr><td>Consent state and date</td><td>To show the Terms &amp; Conditions notice only once</td></tr>
 <tr><td>Games played, review prompt state</td><td>To ask for a Play Store rating at a sensible moment and not more often</td></tr>
 <tr><td>Chips and starting stack for a table</td><td>Game state only — these are virtual and have no value</td></tr>
+<tr><td>Last game played, whether you won it, your winning streak, when you last played, and which reminders were sent recently</td><td>So a reminder fits you ("time for a comeback", "your Rummy table is waiting") and does not repeat itself. Never leaves the phone</td></tr>
+<tr><td>A short break from ads you earned by choosing to watch a rewarded ad</td><td>So the break is honoured until it ends</td></tr>
 <tr><td>Your avatar: a built-in face, or a picture you chose</td><td>So other players recognise you. A chosen picture is shrunk to 96×96 and stored in the app's own folder on this phone; "Remove my photo" deletes it</td></tr>
 </table>
 <p>All of it lives in the app's private storage on your device. Uninstalling the app removes it.</p>
@@ -812,11 +814,41 @@ a picture you have no right to share.</li>
 </ul>
 
 <h2>4. Advertising</h2>
-<p>The free version uses Google AdMob. AdMob may collect a device advertising identifier and
-approximate, coarse information to select and measure ads. You can limit ad personalisation in your
-Android settings (Settings → Privacy → Ads). Where consent is required by law, the ad SDK requests
-it. Choosing to remove ads (when offered) is a purchase handled entirely by Google Play; we never
-see your payment details.</p>
+<p>The free version shows ads through <strong>Google AdMob</strong>. AdMob runs an auction in which
+these ad networks may also bid to show an ad, and the one that wins serves it:</p>
+<ul>
+<li>Meta Audience Network (Meta Platforms) — <a href="https://www.facebook.com/privacy/policy/">privacy policy</a></li>
+<li>InMobi — <a href="https://www.inmobi.com/privacy-policy">privacy policy</a></li>
+<li>Pangle (ByteDance) — <a href="https://www.pangleglobal.com/privacy">privacy policy</a></li>
+<li>Unity Ads (Unity Technologies) — <a href="https://unity.com/legal/game-player-and-app-user-privacy-policy">privacy policy</a></li>
+<li>Liftoff Monetize (formerly Vungle) — <a href="https://liftoff.io/privacy-policy/">privacy policy</a></li>
+<li>Google — <a href="https://policies.google.com/technologies/partner-sites">how Google uses data from apps that use its services</a></li>
+</ul>
+<p>To select, show and measure ads and to prevent fraud, these companies may collect the device's
+advertising ID, IP address, device and app information (model, operating system, language, app
+version) and how you interact with an ad. They do <strong>not</strong> receive your name, your
+cards, your chips, your photo or anything you type in the game.</p>
+<p><strong>Where ads appear.</strong> A banner at the bottom of the screens; a full-screen ad when
+you move on from some lost hands; and, only if you choose to watch one, a rewarded ad that gives you
+a break from full-screen ads. No ad can buy chips or any advantage in a game.</p>
+<p><strong>Your choices.</strong> If you are in the European Economic Area, the UK or Switzerland,
+the app asks for your consent through Google's consent form before any ad is requested, and you can
+change your answer at any time in <em>Settings → Privacy choices (ads)</em>. Anywhere, you can reset
+or delete your advertising ID, or opt out of personalised ads, in your Android settings (Settings →
+Privacy → Ads). Choosing to remove ads (when offered) is a purchase handled entirely by Google Play;
+we never see your payment details, and after it no ad SDK requests ads at all.</p>
+
+<h2>4a. Reminders, sharing and our other apps</h2>
+<ul>
+<li><strong>Reminders.</strong> If you allow notifications, the app schedules reminders on your own
+phone — at most one every three hours, never between 10 pm and 8 am, and after a while only once a
+day. Choosing which reminder to show happens on the phone, from the data in section 1; nothing is
+sent to us or to anyone else. Turn them off in Settings or in Android's notification settings.</li>
+<li><strong>Sharing the app.</strong> The Share button opens Android's own share sheet with a short
+message and a Play Store link. You choose whether and to whom it is sent; the app sees neither.</li>
+<li><strong>More games.</strong> The list of our other apps is built into the app. Tapping one opens
+its Google Play page; nothing about you is sent to us.</li>
+</ul>
 
 <h2>5. Crash reports and diagnostics</h2>
 <p>If crash reporting is enabled in a release, Google Play collects anonymous crash and ANR reports
